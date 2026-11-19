@@ -1,9 +1,21 @@
 package com.example.projectmanagementtool.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class TicketRequest {
+
+    @NotBlank(message = "Ticket title is required")
+    @Size(min=3,max=100,message="Title must contain between 3 and 100 characters")
     private String title;
+
+    @Size(max=1000,message="Description cannot exceed 1000 characters")
     private String description;
+
+    @NotBlank(message="Ticket status is required")
     private String status;
+
+    @NotBlank(message = "Ticket priority is required")
     private String priority;
     private Long assigneeId;
     public TicketRequest(){}

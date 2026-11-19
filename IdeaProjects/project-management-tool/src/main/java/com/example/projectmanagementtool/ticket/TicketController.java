@@ -3,6 +3,7 @@ package com.example.projectmanagementtool.ticket;
 
 import com.example.projectmanagementtool.dto.TicketRequest;
 import com.example.projectmanagementtool.dto.TicketResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class TicketController {
     }
 
     @PostMapping
-    public ResponseEntity<TicketResponse> createTicket(@RequestBody TicketRequest request){
+    public ResponseEntity<TicketResponse> createTicket( @Valid @RequestBody TicketRequest request){
         TicketResponse response=ticketService.createTicket(request);
         return ResponseEntity.ok(response);
     }
@@ -37,7 +38,7 @@ public class TicketController {
     @PutMapping("/{id}")
     public ResponseEntity<TicketResponse> updateTicket(
             @PathVariable Long id,
-            @RequestBody TicketRequest request
+            @Valid @RequestBody TicketRequest request
     ){
         TicketResponse response=ticketService.updateTicket(id,request);
         return ResponseEntity.ok(response);
