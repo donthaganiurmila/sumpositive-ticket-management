@@ -36,8 +36,8 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(
             @Valid @RequestBody UserLoginRequest request
             ){
-        authService.login(request);
-        AuthResponse response=new AuthResponse("Login successful",null,null);
+
+        AuthResponse response= authService.login(request);
         return ResponseEntity.ok(response);
     }
 

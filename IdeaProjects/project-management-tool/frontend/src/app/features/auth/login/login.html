@@ -13,7 +13,7 @@
       Sign in to manage your tickets and projects.
     </p>
 
-    <form (ngSubmit)="login()">
+    <form (ngSubmit)="login()" #loginForm="ngForm">
 
       <div class="form-group">
         <label for="email">Email Address</label>
@@ -25,6 +25,7 @@
           [(ngModel)]="email"
           placeholder="Enter your email"
           required
+          email
         />
       </div>
 
@@ -39,12 +40,19 @@
           placeholder="Enter your password"
           required
         />
+
         <div class="forgot-password">
           <a routerLink="/forgot-password">Forgot Password?</a>
         </div>
       </div>
 
-      <button type="submit">Sign In</button>
+      <p class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </p>
+
+      <button type="submit" [disabled]="isLoading || loginForm.invalid">
+        {{ isLoading ? 'Signing In...' : 'Sign In' }}
+      </button>
 
     </form>
 
